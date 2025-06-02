@@ -1,5 +1,11 @@
 # PythonProject_3
 
+# Wichtig vor Start der Datei
+Python muss installiert werden und dabei dem PATH zugewiesen werden
+Verwendete Bibliotheken:
+- Streamlit
+- Matplotlib
+
 ### Einlesen einer FASTA Sequenz
 Prompt 1 (01.06.2025, 12:55 Uhr)
 "Mein Anforderung ist folgende:
