@@ -1,82 +1,67 @@
-
-import matplotlib.pyplot as plt
+### Wichtige Libraries, die importiert werden müssen ###
 import numpy as np
+import streamlit as st
+from io import StringIO
 
-# Hauptklasse definieren
+
+### Objektorientierte Programmierung mit Klassen ###
+
+# Hauptklasse FASTA definieren
 class FASTA:
     def __init__(self, fasta_text):
         self.fasta_text = fasta_text
 
-    def fasta_input(self):
-        lines = self.fasta_text.splitlines()
-        seq_lines = [line.strip() for line in lines if not line.startswith(">")]
-        sequence = "".join(seq_lines).replace(" ", "").upper()
+    # Methode zum Aufreinigen eines FASTA-Textes zum Erzeugen eines Sequenz-Strings
+    def sequence_input(self):
+        lines = self.fasta_text.splitlines()                                                # Der eingegebene Text wird in separate Lines gesplittet
+        seq_lines = [line.strip() for line in lines if not line.startswith(">")]            # Entfernung des Headers und der Leerzeichen zwischen den Zeilen
+        sequence = "".join(seq_lines).replace(" ", "").upper()                              # Die Linien werden in eine Sequenz gemerget und (falls nötig) in Großbuchstaben umgewandelt
         return sequence
+    
+    def sequence_invert(self):
+        sequence = self.sequence_input()                                                     # Aufruf der Methode zum Aufreinigen des FASTA-Textes
+        complement = {"A": "T", "T": "A", "C": "G", "G": "C"}                                # Definition der komplementären Basen
+        inverted_sequence = "".join(complement[base] for base in reversed(sequence))         # Umkehrung der Sequenz und Ersetzung der Basen durch ihre Komplementäre
+        return inverted_sequence
+
+### Wichtige Funktionen außerhalb der Klasse ###
+
+# Funktion zum Upload eines Files und Speichern in einer Variable
+def upload_FASTA_file():
+    fasta_extensions = ["fasta", "fa", "mpfa", "fna", "fsa"]
+    FASTA_file = st.file_uploader("Lade hier deine FASTA-Datei hoch:", type=fasta_extensions)    # Hier wird die Datei hochgeladen und als Variable gespeichert
+    return FASTA_file                                                                            # Ausgabe der Fasta-Datei
 
 
 
-fasta_text = """>NC_000011.10:c2161209-2159779 Homo sapiens chromosome 11, GRCh38.p14 Primary Assembly
-AGCCCTCCAGGACAGGCTGCATCAGAAGAGGCCATCAAGCAGGTCTGTTCCAAGGGCCTTTGCGTCAGGT
-GGGCTCAGGATTCCAGGGTGGCTGGACCCCAGGCCCCAGCTCTGCAGCAGGGAGGACGTGGCTGGGCTCG
-TGAAGCATGTGGGGGTGAGCCCAGGGGCCCCAAGGCAGGGCACCTGGCCTTCAGCCTGCCTCAGCCCTGC
-CTGTCTCCCAGATCACTGTCCTTCTGCCATGGCCCTGTGGATGCGCCTCCTGCCCCTGCTGGCGCTGCTG
-GCCCTCTGGGGACCTGACCCAGCCGCAGCCTTTGTGAACCAACACCTGTGCGGCTCACACCTGGTGGAAG
-CTCTCTACCTAGTGTGCGGGGAACGAGGCTTCTTCTACACACCCAAGACCCGCCGGGAGGCAGAGGACCT
-GCAGGGTGAGCCAACTGCCCATTGCTGCCCCTGGCCGCCCCCAGCCACCCCCTGCTCCTGGCGCTCCCAC
-CCAGCATGGGCAGAAGGGGGCAGGAGGCTGCCACCCAGCAGGGGGTCAGGTGCACTTTTTTAAAAAGAAG
-TTCTCTTGGTCACGTCCTAAAAGTGACCAGCTCCCTGTGGCCCAGTCAGAATCTCAGCCTGAGGACGGTG
-TTGGCTTCGGCAGCCCCGAGATACATCAGAGGGTGGGCACGCTCCTCCCTCCACTCGCCCCTCAAACAAA
-TGCCCCGCAGCCCATTTCTCCACCCTCATTTGATGACCGCAGATTCAAGTGTTTTGTTAAGTAAAGTCCT
-GGGTGACCTGGGGTCACAGGGTGCCCCACGCTGCCTGCCTCTGGGCGAACACCCCATCACGCCCGGAGGA
-GGGCGTGGCTGCCTGCCTGAGTGGGCCAGACCCCTGTCGCCAGGCCTCACGGCAGCTCCATAGTCAGGAG
-ATGGGGAAGATGCTGGGGACAGGCCCTGGGGAGAAGTACTGGGATCACCTGTTCAGGCTCCCACTGTGAC
-GCTGCCCCGGGGCGGGGGAAGGAGGTGGGACATGTGGGCGTTGGGGCCTGTAGGTCCACACCCAGTGTGG
-GTGACCCTCCCTCTAACCTGGGTCCAGCCCGGCTGGAGATGGGTGGGAGTGCGACCTAGGGCTGGCGGGC
-AGGCGGGCACTGTGTCTCCCTGACTGTGTCCTCCTGTGTCCCTCTGCCTCGCCGCTGTTCCGGAACCTGC
-TCTGCGCGGCACGTCCTGGCAGTGGGGCAGGTGGAGCTGGGCGGGGGCCCTGGTGCAGGCAGCCTGCAGC
-CCTTGGCCCTGGAGGGGTCCCTGCAGAAGCGTGGCATTGTGGAACAATGCTGTACCAGCATCTGCTCCCT
-CTACCAGCTGGAGAACTACTGCAACTAGACGCAGCCCGCAGGCAGCCCCACACCCGCCGCCTCCTGCACC
-GAGAGAGATGGAATAAAGCCCTTGAACCAGC"""
+### Aufbau der App-Page ###
+# Titel der Seite
+st.title("Analyze FASTA-DNA-Sequences")
 
-sequence = FASTA(fasta_text)
-print(sequence.fasta_input())
+# Sidebar für die Auswahl der gewünschten Funktionen
+st.sidebar.title("Button-Auswahl")
+fasta_file_on = st.sidebar.toggle("FASTA-Sequenz aus Datei laden", False)                                   # Toggle-Button für die primäre Auswahl zwischen Text-Eingabe oder Datei-Upload
+invert_DNA_on = st.sidebar.toggle("Inversen DNA-Strang anzeigen", False)                                    # Toggle-Button für die Anzeige des inversen DNA-Strangs
 
 
-'''# Funktion welche die Zeilen die die eigentliche Sequenz beinhalten von der Header-Zeile abtrennt
-def fasta_input(fasta_text):
-    lines = fasta_text.splitlines()
-    seq_lines = [line.strip() for line in lines if not line.startswith(">")]
-    sequence = "".join(seq_lines).replace(" ", "").upper()
-    return sequence
-
-# Funktion für die Angabe der Nukleotidhäufigkeit
-def nucleotide_frequency(sequence):
-    frequency = {nucleotide: sequence.count(nucleotide) for nucleotide in "ACGT"}
-    return frequency
-
-# Funktion zur Umkehr in komplementäre Basenabfolge
-def reverse_complement(sequence):
-    complement = {"A": "T", "T": "A", "C": "G", "G": "C"}
-    return "".join(complement[base] for base in reversed(sequence))
-
-sequence = fasta_input(fasta_text)
-nuc_freq = nucleotide_frequency(fasta_text)
-compl = reverse_complement(sequence)
-
-# Funktion zur Darstellung in einem Barplot
-nucleotides = nuc_freq.keys()
-count = nuc_freq.values()
-
-plt.bar(nucleotides, count)
-plt.title('Nucleotide Count')
-plt.xlabel('Nucleotides')
-plt.ylabel('Count')
-plt.show()
-
-print(sequence)
-print(nuc_freq)
-print(compl)'''
 
 
+### Prüfung auf Upload und konsekutivem Erstellen eines Objekts der Klasse FASTA ###
+if fasta_file_on:
+    FASTA_file = upload_FASTA_file()                                                                        # Aufruf der Funktion zum Hochladen einer Datei
+
+    # Ausgabe der nativen Sequenz bei erfolgreichem Upload einer FASTA-Datei
+    if FASTA_file is not None:
+        fasta_text = FASTA_file.getvalue().decode("utf-8")                                                  # Die Datei wird in einen String umgewandelt
+        sequence_native = FASTA(fasta_text).sequence_input()                                                # Erstellen eines Objekts der Klasse FASTA und Aufruf der Methode zum Aufreinigen des Textes
+        st.write(f"Die Datei enthält folgende DNA-Sequenz: {sequence_native}")                              # Ausgabe derSequenz, die in der hochgeladenen Datei enthalten ist
+
+    if invert_DNA_on and FASTA_file is not None:
+        sequence_invert = FASTA(fasta_text).sequence_invert()                                               # Aufruf der Methode zum Erzeugen der inversen Sequenz, falls der Toggle-Button aktiviert ist
+        st.write(f"Die inverse DNA-Sequenz lautet: {sequence_invert}")                                      # Ausgabe der inversen Sequenz, falls der Toggle-Button aktiviert ist
+    
+else:
+    fasta_seq_input = st.text_input("Gib deine FASTA-DNA-Sequenz manuell ein:")
+    st.write(f"Die eingegebene DNA-Sequenz lautet: {fasta_seq_input}")
 
 
