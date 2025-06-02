@@ -6,3 +6,7 @@ import streamlit as st
 import numpy as np
 
 st.write("Test")
+
+x = st.text_input("Gib hier eine DNA-Sequenz ein: ")
+
+st.write(f"Die eingegebene DNA-Sequenz lautet: {x}")
