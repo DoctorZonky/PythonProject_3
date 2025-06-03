@@ -8,7 +8,7 @@ Verwendete Bibliotheken:
 
 ### Einlesen einer FASTA Sequenz
 Prompt 1 (01.06.2025, 12:55 Uhr)
-"Mein Anforderung ist folgende:
+"Meine Anforderung ist folgende:
 Ich möchte eine Funktion haben die es mir ermöglicht eine FASTA Sequenz (Sprich im FASTA Format) später in ein Eingabefenster zu kopieren, und hierdurch die Sequenz im Code "abgespeichert" wird.
 Schreibe mit hierfür zunächst ein Funktion mit folgenden Anforderungen: 
 
@@ -48,3 +48,7 @@ Automatisch durch integrierten CoPilot vorgeschlagen
 ### Funktion zur Umkehr in komplementäre Basenabfolge
 
 Automatisch durch integrierten CoPilot vorgeschlagen 
+
+
+# Quellen
+https://docs.streamlit.io
