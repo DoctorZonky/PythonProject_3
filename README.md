@@ -49,6 +49,14 @@ Automatisch durch integrierten CoPilot vorgeschlagen
 
 Automatisch durch integrierten CoPilot vorgeschlagen 
 
+### Funktion zur Änderung der Anzeige-Richtung der Sequenzen
+
+Prompt 2 (04.06.2025, 12:05 Uhr)
+
+"Ich möchte noch folgende Funktionalität hinzufügen: 
+
+Es soll einen button geben mit dem ich sowohl für den Original sowie den Komplementärstrang die Richtung einstellen kann in der er ausgegeben wird. 
+Sprich vom Standardmäßigen 5' - 3' zu 3' - 5'"
 
 # Quellen #
 ## Streamlit ##
