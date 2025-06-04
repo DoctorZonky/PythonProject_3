@@ -1,26 +1,58 @@
 
 
-class FASTA(self, fasta_text):
+class FASTA:
     def __init__(self, fasta_text = ""):
         self.fasta_text_raw = fasta_text
-        self.fasta_text = ""
+        self.fasta_sequence = ""
         self.fasta_inverted = ""
-        self.fasta_base_count = {}
+        self.fasta_base_counts = {}
 
-    def fasta_input(self):
+    def fasta_seq(self):
         lines = self.fasta_text_raw.splitlines()
         seq_lines = [line.strip() for line in lines if not line.startswith(">")]
-        sequence = "".join(seq_lines).replace(" ", "").upper()
-        
-        return sequence
+        self.fasta_sequence = "".join(seq_lines).replace(" ", "").upper()
     
     def fasta_invert(self):
-        sequence = self.fasta_text
+        sequence = self.fasta_sequence
         complement = {"A": "T", "T": "A", "C": "G", "G": "C"}
-        inverted_sequence = "".join(complement[base] for base in reversed(sequence))
-        return inverted_sequence
+        self.fasta_inverted = "".join(complement[base] for base in reversed(sequence))
     
     def fasta_base_count(self):
-        sequence = self.fasta_text
-        base_counts = {base: sequence.count(base) for base in "ATCG"}
-        return base_counts
+        sequence = self.fasta_sequence
+        self.base_counts = {base: sequence.count(base) for base in "ATCG"}
+
+
+
+fasta = """>NC_000011.10:c2161209-2159779 Homo sapiens chromosome 11, GRCh38.p14 Primary Assembly
+AGCCCTCCAGGACAGGCTGCATCAGAAGAGGCCATCAAGCAGGTCTGTTCCAAGGGCCTTTGCGTCAGGT
+GGGCTCAGGATTCCAGGGTGGCTGGACCCCAGGCCCCAGCTCTGCAGCAGGGAGGACGTGGCTGGGCTCG
+TGAAGCATGTGGGGGTGAGCCCAGGGGCCCCAAGGCAGGGCACCTGGCCTTCAGCCTGCCTCAGCCCTGC
+CTGTCTCCCAGATCACTGTCCTTCTGCCATGGCCCTGTGGATGCGCCTCCTGCCCCTGCTGGCGCTGCTG
+GCCCTCTGGGGACCTGACCCAGCCGCAGCCTTTGTGAACCAACACCTGTGCGGCTCACACCTGGTGGAAG
+CTCTCTACCTAGTGTGCGGGGAACGAGGCTTCTTCTACACACCCAAGACCCGCCGGGAGGCAGAGGACCT
+GCAGGGTGAGCCAACTGCCCATTGCTGCCCCTGGCCGCCCCCAGCCACCCCCTGCTCCTGGCGCTCCCAC
+CCAGCATGGGCAGAAGGGGGCAGGAGGCTGCCACCCAGCAGGGGGTCAGGTGCACTTTTTTAAAAAGAAG
+TTCTCTTGGTCACGTCCTAAAAGTGACCAGCTCCCTGTGGCCCAGTCAGAATCTCAGCCTGAGGACGGTG
+TTGGCTTCGGCAGCCCCGAGATACATCAGAGGGTGGGCACGCTCCTCCCTCCACTCGCCCCTCAAACAAA
+TGCCCCGCAGCCCATTTCTCCACCCTCATTTGATGACCGCAGATTCAAGTGTTTTGTTAAGTAAAGTCCT
+GGGTGACCTGGGGTCACAGGGTGCCCCACGCTGCCTGCCTCTGGGCGAACACCCCATCACGCCCGGAGGA
+GGGCGTGGCTGCCTGCCTGAGTGGGCCAGACCCCTGTCGCCAGGCCTCACGGCAGCTCCATAGTCAGGAG
+ATGGGGAAGATGCTGGGGACAGGCCCTGGGGAGAAGTACTGGGATCACCTGTTCAGGCTCCCACTGTGAC
+GCTGCCCCGGGGCGGGGGAAGGAGGTGGGACATGTGGGCGTTGGGGCCTGTAGGTCCACACCCAGTGTGG
+GTGACCCTCCCTCTAACCTGGGTCCAGCCCGGCTGGAGATGGGTGGGAGTGCGACCTAGGGCTGGCGGGC
+AGGCGGGCACTGTGTCTCCCTGACTGTGTCCTCCTGTGTCCCTCTGCCTCGCCGCTGTTCCGGAACCTGC
+TCTGCGCGGCACGTCCTGGCAGTGGGGCAGGTGGAGCTGGGCGGGGGCCCTGGTGCAGGCAGCCTGCAGC
+CCTTGGCCCTGGAGGGGTCCCTGCAGAAGCGTGGCATTGTGGAACAATGCTGTACCAGCATCTGCTCCCT
+CTACCAGCTGGAGAACTACTGCAACTAGACGCAGCCCGCAGGCAGCCCCACACCCGCCGCCTCCTGCACC
+GAGAGAGATGGAATAAAGCCCTTGAACCAGC"""
+
+fasta_obj = FASTA(fasta)
+
+fasta_obj.fasta_seq()
+print(fasta_obj.fasta_sequence)
+
+fasta_obj.fasta_invert()
+print(fasta_obj.fasta_inverted)
+
+fasta_obj.fasta_base_count()
+print(fasta_obj.base_counts)

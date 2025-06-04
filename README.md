@@ -58,7 +58,14 @@ Prompt 2 (04.06.2025, 12:05 Uhr)
 Es soll einen button geben mit dem ich sowohl für den Original sowie den Komplementärstrang die Richtung einstellen kann in der er ausgegeben wird. 
 Sprich vom Standardmäßigen 5' - 3' zu 3' - 5'"
 
+
+
 # Quellen #
+## Python ##
+### Klassen ###
+https://docs.python.org/3/tutorial/classes.html
+
+
 ## Streamlit ##
 ### Basics ###
 https://docs.streamlit.io
@@ -66,6 +73,7 @@ https://www.youtube.com/watch?v=43RJ3JByygE&list=PL2VXyKi-KpYtZzm1K8UKnnBzsOCtek
 
 ### Layout ###
 https://www.youtube.com/watch?v=saOv9z6Fk88&list=PL2VXyKi-KpYtZzm1K8UKnnBzsOCtekhKq&index=2
+
 
 
 # To do #
