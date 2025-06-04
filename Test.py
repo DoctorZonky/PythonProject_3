@@ -20,9 +20,15 @@ class FASTA:
     # Methode zum Aufreinigen eines FASTA-Textes zum Erzeugen eines Sequenz-Strings
     def sequence_input(self):
         lines = self.fasta_text.splitlines()                                                            # Der eingegebene Text wird in separate Lines gesplittet
-        seq_lines = [line.strip() for line in lines if not line.startswith(">")]                        # Entfernung des Headers und der Leerzeichen zwischen den Zeilen
-        sequence = "".join(seq_lines).replace(" ", "").upper()                                          # Die Linien werden in eine Sequenz gemerget und (falls nötig) in Großbuchstaben umgewandelt
+        seq_lines = [line.strip() for line in lines if not line.startswith(">")]                        # Entfernung des Headers 
+        sequence = "".join(seq_lines).replace(" ", "").upper()                                          # Die Linien werden in eine Sequenz gemerget und (falls nötig) in Großbuchstaben umgewandelt, Leerzeichen zwischen den Zeilen werden entfernt
         return sequence
+    
+    # Methode zur Extraktion der Header Zeilen
+    def header_input(self):
+        lines = self.fasta_text.splitlines()                                                            # Der eingegebene Text wird in separate Lines gesplittet
+        header = [line.strip() for line in lines if line.startswith(">")]                               # Entfernung aller Zeilen außer dem Header
+        return header
     
     # Methode zur Erzeugung eines inversen DNA-Strangs in 5'-3'-Richtung
     def sequence_invert(self):
@@ -59,7 +65,9 @@ if fasta_file_on:
     if FASTA_file is not None:
         fasta_text = FASTA_file.getvalue().decode("utf-8")                                              # Die Datei wird in einen String umgewandelt
         sequence_native = FASTA(fasta_text).sequence_input()                                            # Erstellen eines Objekts der Klasse FASTA und Aufruf der Methode zum Aufreinigen des Textes
-        st.write(f"Die Datei enthält folgende DNA-Sequenz: {sequence_native}")                          # Ausgabe derSequenz, die in der hochgeladenen Datei enthalten ist
+        st.write(f"Die Datei enthält folgende DNA-Sequenz: {sequence_native}")                          # Ausgabe der Sequenz, die in der hochgeladenen Datei enthalten ist
+        header = FASTA(fasta_text).header_input()                                                       # Erstellen eines Objekts der Klasse FASTA und Aufruf der Methode zum Aufreinigen des Headers
+        st.write(f"Die Header-Zeile der DNA-Sequenz lautet: {header}")                                  # Ausgabe des Headers, der in der hochgeladenen Datei enthalten ist
 
     if invert_DNA_on and FASTA_file is not None:
         sequence_invert = FASTA(fasta_text).sequence_invert()                                           # Aufruf der Methode zum Erzeugen der inversen Sequenz, falls der Toggle-Button aktiviert ist

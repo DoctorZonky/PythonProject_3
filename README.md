@@ -58,3 +58,12 @@ https://www.youtube.com/watch?v=43RJ3JByygE&list=PL2VXyKi-KpYtZzm1K8UKnnBzsOCtek
 
 # Layout #
 https://www.youtube.com/watch?v=saOv9z6Fk88&list=PL2VXyKi-KpYtZzm1K8UKnnBzsOCtekhKq&index=2
+
+
+### To do ###
+1) Headerzeilen extrahieren und ausgeben lassen (Marco) Check
+2) Komplemente angeben (5'-3') mit Button(?) (Marco) 
+3) Spalten für Originalcode und inversen Code
+4) Dropdown für beide Codezeilen (Adrian)
+5) Bar-Chart gesamthaft unter Codes anzeigen (Adrian)
+6) Farbschemaauswahl für Barchart? (Adrian)
