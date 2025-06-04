@@ -54,7 +54,8 @@ st.sidebar.title("Button-Auswahl")
 fasta_file_on = st.sidebar.toggle("FASTA-Sequenz aus Datei laden", False)                               # Toggle-Button für die primäre Auswahl zwischen Text-Eingabe oder Datei-Upload
 invert_DNA_on = st.sidebar.toggle("Inversen DNA-Strang anzeigen", False)                                # Toggle-Button für die Anzeige des inversen DNA-Strangs
 
-
+# Spalten-Layout für die Anzeige der Ergebnisse
+col1, col2 = st.columns(2)                                                                              # Erstellen von zwei Spalten für die Anzeige der Ergebnisse
 
 
 ### Prüfung auf Upload und konsekutivem Erstellen eines Objekts der Klasse FASTA ###
@@ -63,19 +64,29 @@ if fasta_file_on:
 
     # Ausgabe der nativen Sequenz bei erfolgreichem Upload einer FASTA-Datei
     if FASTA_file is not None:
+        col1.header("Original DNA-Sequence")
         fasta_text = FASTA_file.getvalue().decode("utf-8")                                              # Die Datei wird in einen String umgewandelt
-        sequence_native = FASTA(fasta_text).sequence_input()                                            # Erstellen eines Objekts der Klasse FASTA und Aufruf der Methode zum Aufreinigen des Textes
-        st.write(f"Die Datei enthält folgende DNA-Sequenz: {sequence_native}")                          # Ausgabe der Sequenz, die in der hochgeladenen Datei enthalten ist
         header = FASTA(fasta_text).header_input()                                                       # Erstellen eines Objekts der Klasse FASTA und Aufruf der Methode zum Aufreinigen des Headers
-        st.write(f"Die Header-Zeile der DNA-Sequenz lautet: {header}")                                  # Ausgabe des Headers, der in der hochgeladenen Datei enthalten ist
+        col1.write(f"Die Header-Zeile der DNA-Sequenz lautet: {header}")                                # Ausgabe des Headers, der in der hochgeladenen Datei enthalten ist
+        sequence_native = FASTA(fasta_text).sequence_input()                                            # Erstellen eines Objekts der Klasse FASTA und Aufruf der Methode zum Aufreinigen des Textes
+        col1.write(f"Die Datei enthält folgende DNA-Sequenz: {sequence_native}")                        # Ausgabe der Sequenz, die in der hochgeladenen Datei enthalten ist
+
 
     if invert_DNA_on and FASTA_file is not None:
+        col2.header("Inverted DNA-Sequence")                                                              # Header für die Spalte mit der inversen Sequenz
         sequence_invert = FASTA(fasta_text).sequence_invert()                                           # Aufruf der Methode zum Erzeugen der inversen Sequenz, falls der Toggle-Button aktiviert ist
-        st.write(f"Die inverse DNA-Sequenz lautet: {sequence_invert}")                                  # Ausgabe der inversen Sequenz, falls der Toggle-Button aktiviert ist
+        col2.write(f"Die inverse DNA-Sequenz lautet: {sequence_invert}")                                # Ausgabe der inversen Sequenz, falls der Toggle-Button aktiviert ist
     
 else:
     fasta_seq_input = st.text_area("Gib deine FASTA-DNA-Sequenz manuell ein:")
-    st.write(f"Die eingegebene DNA-Sequenz lautet: {fasta_seq_input}")
+    if fasta_seq_input:
+        col1.header("Original DNA-Sequence")
+        fasta_obj = FASTA(fasta_seq_input)
+        header = fasta_obj.header_input()                                                                   # Erstellen eines Objekts der Klasse FASTA und Aufruf der Methode zum Aufreinigen des Headers
+        col1.write(f"Die Header-Zeile der DNA-Sequenz lautet: {header}")                                  # Ausgabe des Headers, der in der hochgeladenen Datei enthalten ist
+        sequence_native = fasta_obj.sequence_input()                                                        # Erstellen eines Objekts der Klasse FASTA und Aufruf der Methode zum Aufreinigen des Textes
+        col1.write(f"Die Datei enthält folgende DNA-Sequenz: {sequence_native}") 
+        #st.write(f"Die Datei enthält folgende DNA-Sequenz: {fasta_seq_input}")
 
     # Abfrage, ob die Sequenz invertiert werden soll
     if invert_DNA_on and fasta_seq_input:
