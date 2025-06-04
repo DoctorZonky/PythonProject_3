@@ -50,5 +50,11 @@ Automatisch durch integrierten CoPilot vorgeschlagen
 Automatisch durch integrierten CoPilot vorgeschlagen 
 
 
-# Quellen
+### Quellen ###
+## Streamlit ##
+# Basics #
 https://docs.streamlit.io
+https://www.youtube.com/watch?v=43RJ3JByygE&list=PL2VXyKi-KpYtZzm1K8UKnnBzsOCtekhKq
+
+# Layout #
+https://www.youtube.com/watch?v=saOv9z6Fk88&list=PL2VXyKi-KpYtZzm1K8UKnnBzsOCtekhKq&index=2
