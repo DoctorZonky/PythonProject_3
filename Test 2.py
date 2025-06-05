@@ -1,4 +1,6 @@
 # Wichtige Libraries, die importiert werden müssen #
+!pip install 
+
 import numpy as np
 import streamlit as st
 import pandas as pd
@@ -104,7 +106,7 @@ st.sidebar.title("Options")                                                     
 
 
 # Prüfung auf Upload und konsekutivem Erstellen eines Objekts der Klasse FASTA #
-if st.sidebar.toggle("Load FASTA Sequence from file", False):
+if st.sidebar.container(border = True).toggle("Load FASTA Sequence from file", False):
     file_uploaded = st.sidebar.file_uploader(                                                               # Sidebar-Datei-Upload für FASTA-Dateien
         "Drag and drop your file here:",
         type=["fasta", "fa", "mpfa", "fna", "fsa"]
@@ -143,7 +145,7 @@ else:
     fasta_seq_input = st.sidebar.text_area("Gib deine FASTA-DNA-Sequenz manuell ein:")                      # Aufruf des Textfeldes, um eine FASTA-Sequenz manuell eingeben zu können
 
     ## Kontrollstruktur, wenn Sequenz manuell eingegeben wurde ##
-    if fasta_seq_input is not None:
+    if fasta_seq_input is not None and fasta_seq_input.strip() != "":                                       # Prüfung, ob eine Sequenz eingegeben wurde
         FASTA_input = FASTA(fasta_seq_input)                                                                # Erstellen eines neuen FASTA-Objekts aus dem manuellen Input
         FASTA_input.get_sequence()                                                                          # Aufruf der Methode zum Extrahieren der Sequenz aus dem Input
         FASTA_input.get_header()                                                                            # Aufruf der Methode zum Herausziehen des Headers
