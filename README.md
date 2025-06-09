@@ -90,7 +90,9 @@ Automatisch durch integrierten CoPilot in VSC vorgeschlagen
 ### Funktion zur Umkehr in komplementäre Basenabfolge
 Automatisch durch integrierten CoPilot in VSC vorgeschlagen 
 
-
+## Funktion um Strang-Leserichtung umzudrehen
+Prompt 2 (09.06.2025, 19:00)
+"Ich würde gerne noch folgende Funktion hinzufügen. Es soll durch einen toggle Button in Streamlit möglich sein die Leserichtung (standardmäßig ist es ja 5' - 3') zu 3' - 5' zu ändern. Sprich die Sequenz soll invertiert werden. Dies soll sowohl bei der Originalsequenz stattfinden, als auch bei dem Gegenstrang, der durch die Funktion "invert sequence" (schon im Code vorhanden) erstellt wird."
 
 # Beispielddaten
 ## Beispiel-FASTA-Sequenz von NCBI
@@ -152,7 +154,7 @@ https://vega.github.io/vega/docs/schemes/
 
 # To do #
 1) Headerzeilen extrahieren und ausgeben lassen (Marco) Check
-2) Komplemente angeben (5'-3') mit Button(?) (Marco) 
+2) Komplemente angeben (5'-3') mit Button(?) (Marco) Check
 3) Spalten für Originalcode und inversen Code (Adrian) Check
 4) Dropdown für beide Codezeilen (Adrian) Check
 5) Bar-Chart gesamthaft unter Sequenzen anzeigen (Adrian)
