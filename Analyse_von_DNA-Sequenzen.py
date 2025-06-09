@@ -41,6 +41,11 @@ class FASTA:
     def base_count(self):
         sequence = self.fasta_seq
         self.fasta_base_counts = {base: sequence.count(base) for base in "ATCG"}
+
+    ## Methode zur Umkehr der Leserichtung der Original- sowie der invertierten Sequenz
+    def reverse_sequence(self):
+        self.fasta_seq = self.fasta_seq[::-1]
+        self.fasta_inverted = self.fasta_inverted[::-1]
         
 
 
@@ -128,18 +133,21 @@ if st.sidebar.container(border = True).toggle("Load FASTA Sequence from file", F
         ### Toogler für die Auswahl der Anzeige des inversen DNA-Strangs und der Basenzählung ###
         invert_DNA_on = st.sidebar.toggle("Show inverted DNA-Sequence", False)
         base_count_on = st.sidebar.toggle("Show base count and bar plot", False)
+        reverse_reading_on = st.sidebar.toggle("Reverse reading direction (3' → 5')", False)
 
+        ## Kontrollstruktur zur Ausführung der umgedrehten Sequenzausgabe ##
+        if reverse_reading_on:
+            FASTA_file.reverse_sequence()
+            
         ### Kontrollstruktur zur Ausführung der Invertierung der DNA-Sequenz, falls gewünscht und der Generierung der rechten Spalte ###
         if invert_DNA_on and FASTA_file is not None:
             FASTA_file.invert_sequence()
             do_col2(FASTA_file.fasta_inverted)
 
-
         ### Kontrollstruktur zur Ausführung der Basenzählung und der Anzeige im Balkendiagramm mit eigenen Farben, falls gewünscht ###
         if base_count_on and FASTA_file is not None:
             FASTA_file.base_count()
             show_base_count_plot(FASTA_file.fasta_base_counts)
-
 
 # Wenn kein Upload gewollt, dann wird die manuelle Eingabe der Sequenz freigeschaltet #    
 else:
@@ -160,13 +168,16 @@ else:
         ### Toogler für die Auswahl der Anzeige des inversen DNA-Strangs und der Basenzählung ###
         invert_DNA_on = st.sidebar.toggle("Show inverted DNA-Sequence", False)
         base_count_on = st.sidebar.toggle("Show base count and bar plot", False)
-
-
+        reverse_reading_on = st.sidebar.toggle("Reverse reading direction (3' → 5')", False)
+       
+        ## Kontrollstruktur zur Ausführung der umgedrehten Sequenzausgabe ##
+        if reverse_reading_on:
+            FASTA_input.reverse_sequence()
+            
         ### Kontrollstruktur zur Ausführung der Invertierung der DNA-Sequenz, falls gewünscht und Generierung der rechten Spalte ###
         if invert_DNA_on and fasta_seq_input is not None:
             FASTA_input.invert_sequence()
             do_col2(FASTA_input.fasta_inverted)
-
 
         ### Kontrollstruktur zur Ausführung der Basenzählung und der Anzeige im Balkendiagramm mit eigenen Farben, falls gewünscht ###
         if base_count_on and fasta_seq_input is not None:
