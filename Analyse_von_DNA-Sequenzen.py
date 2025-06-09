@@ -125,10 +125,6 @@ if st.sidebar.container(border = True).toggle("Load FASTA Sequence from file", F
         ### Layout der ersten Spalte und der Anzeige des Sequenz-Headers darüber ###
         FASTA_file.get_header()
         do_header(FASTA_file.fasta_header)
-        
-        ### Erzeugung der zwei Spalten für die Anzeige auf der Hauptseite und Ausführung der Generierungsfunktionen für die linke Spalte ###
-        col1, col2 = st.columns(2)
-        do_col1(FASTA_file.fasta_seq)
 
         ### Toogler für die Auswahl der Anzeige des inversen DNA-Strangs und der Basenzählung ###
         invert_DNA_on = st.sidebar.toggle("Show inverted DNA-Sequence", False)
@@ -138,7 +134,11 @@ if st.sidebar.container(border = True).toggle("Load FASTA Sequence from file", F
         ## Kontrollstruktur zur Ausführung der umgedrehten Sequenzausgabe ##
         if reverse_reading_on:
             FASTA_file.reverse_sequence()
-            
+
+        ### Erzeugung der zwei Spalten für die Anzeige auf der Hauptseite und Ausführung der Generierungsfunktionen für die linke Spalte ###
+        col1, col2 = st.columns(2)
+        do_col1(FASTA_file.fasta_seq)
+        
         ### Kontrollstruktur zur Ausführung der Invertierung der DNA-Sequenz, falls gewünscht und der Generierung der rechten Spalte ###
         if invert_DNA_on and FASTA_file is not None:
             FASTA_file.invert_sequence()
@@ -161,10 +161,6 @@ else:
         FASTA_input.get_header()
         do_header(FASTA_input.fasta_header)
 
-        ### Erzeugung der zwei Spalten für die Anzeige auf der Hauptseite und Ausführung der Generierungsfunktionen für die linke Spalte
-        col1, col2 = st.columns(2)
-        do_col1(FASTA_input.fasta_seq)
-
         ### Toogler für die Auswahl der Anzeige des inversen DNA-Strangs und der Basenzählung ###
         invert_DNA_on = st.sidebar.toggle("Show inverted DNA-Sequence", False)
         base_count_on = st.sidebar.toggle("Show base count and bar plot", False)
@@ -173,6 +169,10 @@ else:
         ## Kontrollstruktur zur Ausführung der umgedrehten Sequenzausgabe ##
         if reverse_reading_on:
             FASTA_input.reverse_sequence()
+
+        ### Erzeugung der zwei Spalten für die Anzeige auf der Hauptseite und Ausführung der Generierungsfunktionen für die linke Spalte
+        col1, col2 = st.columns(2)
+        do_col1(FASTA_input.fasta_seq)
             
         ### Kontrollstruktur zur Ausführung der Invertierung der DNA-Sequenz, falls gewünscht und Generierung der rechten Spalte ###
         if invert_DNA_on and fasta_seq_input is not None:
