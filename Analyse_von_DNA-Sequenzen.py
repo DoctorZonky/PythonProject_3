@@ -9,7 +9,7 @@ import altair as alt
 # Hauptklasse FASTA definieren
 ## Konstruktor der Klasse FASTA, der Attribute festlegt
 class FASTA:
-    def __init__(self, fasta_input=""):                                                                     
+    def __init__(self, fasta_input=None):                                                                     
         self.fasta_input = fasta_input
         self.fasta_seq = ""
         self.fasta_header = ""
