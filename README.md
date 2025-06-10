@@ -85,10 +85,10 @@ Sie sollte die zusätzlichen Zeichen die bei einem FASTA Format mit dabei sind "
 Die Sequenz sollte so eingespeist werden, dass weiterführende AKtionen damit stattfinden können."
 
 ### Nukleotid Counter Funktion
-Automatisch durch integrierten CoPilot in VSC vorgeschlagen 
+Automatisch durch integrierten CoPilot in VSC vorgeschlagen (Ohne direkte Prompteingabe)
 
 ### Funktion zur Umkehr in komplementäre Basenabfolge
-Automatisch durch integrierten CoPilot in VSC vorgeschlagen 
+Automatisch durch integrierten CoPilot in VSC vorgeschlagen (Ohne direkte Prompteingabe)
 
 ## Funktion um Strang-Leserichtung umzudrehen
 Prompt 2 (09.06.2025, 19:00)
@@ -149,13 +149,3 @@ https://www.youtube.com/watch?v=saOv9z6Fk88&list=PL2VXyKi-KpYtZzm1K8UKnnBzsOCtek
 https://altair-viz.github.io/user_guide/customization.html
 https://docs.streamlit.io/develop/api-reference/charts/st.altair_chart
 https://vega.github.io/vega/docs/schemes/
-
-
-
-# To do #
-1) Headerzeilen extrahieren und ausgeben lassen (Marco) Check
-2) Komplemente angeben (5'-3') mit Button(?) (Marco) Check
-3) Spalten für Originalcode und inversen Code (Adrian) Check
-4) Dropdown für beide Codezeilen (Adrian) Check
-5) Bar-Chart gesamthaft unter Sequenzen anzeigen (Adrian)
-6) Farbschemaauswahl für Barchart? (Adrian)
