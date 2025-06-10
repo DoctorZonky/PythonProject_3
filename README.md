@@ -15,11 +15,11 @@
 4)  Ein schwarzes Fenster (die Konsole) öffnet sich.
 
 ## Installation der Dependencies
-1)  Tippen Sie in die Konsole "cd " und fügen das zuvor kopierte Directory aus dem Zwischenspeicher ein (STRG + V).
+1)  Tippen Sie in die Konsole `cd ` und fügen das zuvor kopierte Directory aus dem Zwischenspeicher ein (STRG + V).
 2)  Drücken Sie Enter, nun sollte der ausgewählte Ordner in der Konsole als angesteuerter Pfad angezeigt werden.
-3)  Tippen Sie nun 'pip install -r "requirements.txt"' ("" müssen hier mit kopiert werden!).
+3)  Tippen Sie nun `pip install -r "requirements.txt"` ("" müssen hier mit kopiert werden!).
     Sollte die Datei sich nicht öffnen lassen oder einzelne Fehlermeldungen kommen, installieren Sie streamlit, pandas und altair separat
-    über "pip install [Bibliotheksname]" in der Konsole.
+    über `pip install [Bibliotheksname]` in der Konsole.
 4)  Alle notwendigen Libraries sollten nun installiert werden.
 
 ## Ausführen des Programms
