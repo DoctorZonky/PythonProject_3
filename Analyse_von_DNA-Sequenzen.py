@@ -59,15 +59,21 @@ def do_header(header):
 
 ## Funktion zum Erstellen der linken Spalte (Col1) für die Anzeige der Überschrift und der nativen Sequenz in einem Expander ##
 def do_col1(sequence):
-    col1.header("Original")
-    col1.expander("Expand / Collapse DNA Sequence", True).write(sequence)
+    if not reverse_reading_on:
+        col1.header("Original: 5' -> 3'")
+        col1.expander("Expand / Collapse DNA Sequence", True).write(sequence)
+    else:
+        col1.header("Original: 3' -> 5'")
+        col1.expander("Expand / Collapse DNA Sequence", True).write(sequence)
 
 ## Funktion zum Erstellen der rechten Spalte (Col2) für die Anzeige der Überschrift und der inversen Sequenz in einem Expander ##
 def do_col2(sequence_inv):
-    col2.header("Inverted")  
-    col2.expander("Expand / Collapse DNA Sequence", True).write(sequence_inv)
-
-
+    if not reverse_reading_on:
+        col2.header("Inverted: 5' -> 3'")  
+        col2.expander("Expand / Collapse DNA Sequence", True).write(sequence_inv)
+    else:
+        col2.header("Inverted: 3' -> 5'")  
+        col2.expander("Expand / Collapse DNA Sequence", True).write(sequence_inv)
 
 ## Funktion zur Erzeugung einer Liste der Farbauswahlen für das Balkendiagramm über Hex-Farbcode-Picker ##
 def do_color_palette():
@@ -122,14 +128,14 @@ if st.sidebar.container(border = True).toggle("Load FASTA Sequence from file", F
         FASTA_file.fasta_file_to_string()
         FASTA_file.get_sequence()
         
-        ### Layout der ersten Spalte und der Anzeige des Sequenz-Headers darüber ###
-        FASTA_file.get_header()
-        do_header(FASTA_file.fasta_header)
-
         ### Toogler für die Auswahl der Anzeige des inversen DNA-Strangs und der Basenzählung ###
         invert_DNA_on = st.sidebar.toggle("Show inverted DNA-Sequence", False)
         base_count_on = st.sidebar.toggle("Show base count and bar plot", False)
         reverse_reading_on = st.sidebar.toggle("Reverse reading direction (3' → 5')", False)
+
+        ### Layout der ersten Spalte und der Anzeige des Sequenz-Headers darüber ###
+        FASTA_file.get_header()
+        do_header(FASTA_file.fasta_header)
 
         ## Kontrollstruktur zur Ausführung der umgedrehten Sequenzausgabe ##
         if reverse_reading_on:
@@ -158,14 +164,16 @@ else:
     if fasta_seq_input is not None and fasta_seq_input.strip() != "":
         FASTA_input = FASTA(fasta_seq_input)
         FASTA_input.get_sequence()
-        FASTA_input.get_header()
-        do_header(FASTA_input.fasta_header)
 
         ### Toogler für die Auswahl der Anzeige des inversen DNA-Strangs und der Basenzählung ###
         invert_DNA_on = st.sidebar.toggle("Show inverted DNA-Sequence", False)
         base_count_on = st.sidebar.toggle("Show base count and bar plot", False)
         reverse_reading_on = st.sidebar.toggle("Reverse reading direction (3' → 5')", False)
-       
+
+        ### Layout der ersten Spalte und der Anzeige des Sequenz-Headers darüber ###
+        FASTA_input.get_header()
+        do_header(FASTA_input.fasta_header)
+     
         ## Kontrollstruktur zur Ausführung der umgedrehten Sequenzausgabe ##
         if reverse_reading_on:
             FASTA_input.reverse_sequence()
