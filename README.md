@@ -1,9 +1,10 @@
 # PythonProject_3
-
+Adrian Vitz:    1353774, MBT, Sem. 2, 11.06.2025
+Marco Volpini:  1494123, MBT, Sem. 2, 11.06.2025
 
 # Vorbereitung für die Ausführung der App
 ## Erste Schritte
-1)  Laden Sie sich die Dateien "requirements.txt" und "YYY.py" herunter und speichern sie in einem Ordner auf dem Desktop.
+1)  Laden Sie sich die Dateien "requirements.txt", "sequence.fasta" und "Analyse_von_DNA-Sequenzen.py" herunter und speichern sie in einem Ordner auf dem Desktop.
 2)  Doppelklicken Sie den Ordner, in dem Sie die Dateien gespeichert haben und öffnen ihn somit.
 3)  Erweitern Sie den Dateipfad mit einem Einfachklick der linken Maustaste in das Adressfeld (Beginnt mit "Desktop").
 4)  Kopieren Sie den Pfad aus der Adresszeile (STRG + C).
@@ -23,7 +24,7 @@
 4)  Alle notwendigen Libraries sollten nun installiert werden.
 
 ## Ausführen des Programms
-1)  Tippen Sie nun in die Konsole 'streamlit run "YYY.py"' ("" müssen hier mit kopiert werden!).
+1)  Tippen Sie nun in die Konsole `streamlit run "Analyse_von_DNA-Sequenzen.py"` ("" müssen hier mit kopiert werden!).
 2)  Nun sollte sich Ihr favorisierter Browser öffnen und die App in einem Browser-Tab starten.
 
 
