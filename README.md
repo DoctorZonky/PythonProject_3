@@ -128,7 +128,11 @@ Quelle: https://www.ncbi.nlm.nih.gov/nuccore/LT934502.1?report=fasta
 Die protokollierte Bearbeitung der Dateien entspricht nicht dem jeweils zugewiesenen Arbeitsaufwand einzelner Personen, da
 teilweise über Zoom zusammengearbeitet wurde, obwohl nur eine Person als Autor eingetragen wurde.
 Darüber hinaus erklären wir, dass die Projektarbeit ohne Hilfe Dritter entstanden ist, die nicht in Videoquellen genannt wurden und
-lediglich KI als Unterstützung unter den eingesetzten Promts verwendet wurde. Die Struktur und Ausarbeitung des Projekts ist 
+lediglich KI als Unterstützung unter den eingesetzten Promts verwendet wurde.
+
+Um eine Nachvollziehbarkeit der Änderungsstufen im Repository beizubehalten, wurden die 3 verschiedenen Test-Dateien belassen, da hier nicht mit Branches gearbeitet wurde.
+Diese Dateien haben keinen Einfluss auf die App selbst, noch müssen diese ausgeführt werden.
+
 
 # Quellen #
 ## Python ##
