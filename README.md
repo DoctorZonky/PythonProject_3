@@ -44,11 +44,11 @@ Die Hauptseite der App zeigt die Überschrift "Analyze FASTA-DNA-Sequences" und 
 
 ### FASTA-Sequenz über eine FASTA-Datei hochladen
 1)  Klicken Sie auf den Toggle "Load FASTA-Sequence from file", wenn dieser rot hinterlegt ist, wurde die Funktion aktiviert.
-2)  Nun hat sich das Eingabefeld geänert und fordert zum Drag-'n'-Dropp eines FASTA-Files auf.
+2)  Nun hat sich das Eingabefeld geändert und fordert zum Drag-'n'-Drop eines FASTA-Files auf.
 3)  Sie können wahlweise ein FASTA-File per Drag-'n'-Drop in die schwarze Box ziehen
     oder auf "Browse File" klicken, um im Dateiexplorer eins auszuwählen.
     Hierzu könnten Sie bspw. das mitgelieferte Beispiel-File "sequence.fasta" von NCBI verwenden.
-4)  Nach dem erfolgreichen Hochladen werden nun automatisch zwei neue Objekte auf der Hautseite erscheinen:
+4)  Nach dem erfolgreichen Hochladen werden nun automatisch zwei neue Objekte auf der Hauptseite erscheinen:
     Der FASTA-Sequence header und das Expandable mit der Original-Sequenz in 5'-3'-Richtung.
 5)  Wahlweise können alle Expandables ("Expand / Collapse [...]") für eine bessere Übersicht ein- und ausgeklappt werden.
 
